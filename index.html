@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administratie Houten – Boekhouding & Belastingadvies sinds 2008</title>
+  <meta name="description" content="Administratie Houten verzorgt uw boekhouding, BTW-aangifte en inkomstenbelasting. Persoonlijk, transparant en al meer dan 16 jaar actief. Vraag vrijblijvend een offerte aan." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1a2340;
+      background: #fff;
+      line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── Tokens ───────────────────────────────────────────────────── */
+    :root {
+      --navy:   #0f2554;
+      --blue:   #1a56db;
+      --blue-lt:#e8f0fe;
+      --orange: #f59e0b;
+      --orange-dk: #d97706;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --shadow:    0 4px 16px rgba(0,0,0,.1);
+      --shadow-lg: 0 20px 40px rgba(0,0,0,.12);
+    }
+
+    /* ── Utility ──────────────────────────────────────────────────── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--gray-50); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-lt); color: var(--blue);
+      font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .badge::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    h2.section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800; color: var(--navy); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    p.section-sub {
+      font-size: 1.05rem; color: var(--gray-600);
+      max-width: 580px; margin-bottom: 48px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-size: .95rem; font-weight: 600; cursor: pointer;
+      border: 2px solid transparent; transition: all .2s;
+    }
+    .btn-primary {
+      background: var(--orange); color: #fff;
+      border-color: var(--orange);
+    }
+    .btn-primary:hover { background: var(--orange-dk); border-color: var(--orange-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,158,11,.35); }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border-color: rgba(255,255,255,.55);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .btn-outline-dark {
+      background: transparent; color: var(--navy);
+      border-color: var(--gray-200);
+    }
+    .btn-outline-dark:hover { background: var(--gray-100); }
+
+    /* ── Nav ──────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px;
+      transition: background .3s, box-shadow .3s;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--gray-200);
+    }
+    .nav__inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav__logo {
+      font-size: 1.15rem; font-weight: 800; color: #fff;
+      transition: color .3s;
+    }
+    .nav.scrolled .nav__logo { color: var(--navy); }
+    .nav__logo span { color: var(--orange); }
+    .nav__links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav__links a {
+      font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.85);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: #fff; }
+    .nav.scrolled .nav__links a { color: var(--gray-600); }
+    .nav.scrolled .nav__links a:hover { color: var(--navy); }
+    .nav__cta {
+      background: var(--orange); color: #fff !important;
+      padding: 9px 20px; border-radius: 8px; font-weight: 600 !important;
+    }
+    .nav__cta:hover { background: var(--orange-dk) !important; color: #fff !important; }
+    .nav__hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 4px;
+    }
+    .nav__hamburger {
+      background: transparent; border: none; outline: none;
+    }
+    .nav__hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: background .3s, transform .3s, opacity .3s;
+    }
+    .nav.scrolled .nav__hamburger span { background: var(--navy); }
+    .nav__hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Hero ─────────────────────────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 60%, #1d4ed8 100%);
+      padding: 160px 24px 100px;
+      min-height: 100vh;
+      display: flex; align-items: center;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 80% 20%, rgba(99,179,237,.12) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(249,168,37,.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .hero__grid {
+      position: absolute; inset: 0; opacity: .03;
+      background-image: linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero__inner {
+      position: relative; z-index: 1;
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
+    }
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,.15); color: var(--orange);
+      font-size: .8rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 100px;
+      border: 1px solid rgba(245,158,11,.3);
+      margin-bottom: 24px;
+    }
+    .hero__title {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 800; color: #fff; line-height: 1.15;
+      letter-spacing: -.02em; margin-bottom: 24px;
+    }
+    .hero__title em { color: var(--orange); font-style: normal; }
+    .hero__sub {
+      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      max-width: 520px; margin-bottom: 40px; line-height: 1.7;
+    }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__proof {
+      display: flex; align-items: center; gap: 16px; margin-top: 48px;
+      padding-top: 36px; border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .hero__stars { display: flex; gap: 3px; }
+    .hero__stars span { color: var(--orange); font-size: 1rem; }
+    .hero__proof-text { font-size: .85rem; color: rgba(255,255,255,.7); }
+    .hero__proof-text strong { color: #fff; }
+
+    /* Hero card */
+    .hero__card {
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+    }
+    .hero__card h3 {
+      font-size: 1.15rem; font-weight: 700; color: #fff;
+      margin-bottom: 24px;
+    }
+    .hero__form-group { margin-bottom: 14px; }
+    .hero__form-group label {
+      display: block; font-size: .8rem; font-weight: 600;
+      color: rgba(255,255,255,.7); margin-bottom: 6px;
+    }
+    .hero__form-group input,
+    .hero__form-group select,
+    .hero__form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .9rem; color: #fff;
+      font-family: inherit;
+      transition: border .2s, background .2s;
+      outline: none;
+    }
+    .hero__form-group input::placeholder,
+    .hero__form-group textarea::placeholder { color: rgba(255,255,255,.4); }
+    .hero__form-group input:focus,
+    .hero__form-group select:focus,
+    .hero__form-group textarea:focus {
+      border-color: var(--orange);
+      background: rgba(255,255,255,.15);
+    }
+    .hero__form-group select option { background: var(--navy); color: #fff; }
+    .hero__card .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
+    .hero__card-note {
+      font-size: .75rem; color: rgba(255,255,255,.5);
+      text-align: center; margin-top: 10px;
+    }
+
+    /* ── Stats Bar ────────────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--navy); padding: 32px 24px;
+    }
+    .stats-bar__inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; text-align: center;
+    }
+    .stat__number {
+      font-size: 2rem; font-weight: 800; color: var(--orange);
+      display: block; line-height: 1;
+    }
+    .stat__label { font-size: .85rem; color: rgba(255,255,255,.65); margin-top: 6px; }
+    .stats-bar__divider {
+      border: none; border-left: 1px solid rgba(255,255,255,.1);
+    }
+
+    /* ── USPs (differentiators) ───────────────────────────────────── */
+    .usps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .usp-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 32px;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .usp-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .usp-card__icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--blue-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 1.4rem;
+    }
+    .usp-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .usp-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.65; }
+
+    /* ── Services ─────────────────────────────────────────────────── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .service-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--gray-200);
+      display: flex; flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .service-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .service-card__header {
+      padding: 32px; background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+    .service-card__header::after {
+      content: '';
+      position: absolute; bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%; background: rgba(255,255,255,.05);
+    }
+    .service-card__num {
+      font-size: 3.5rem; font-weight: 800;
+      color: rgba(255,255,255,.08); line-height: 1;
+      position: absolute; top: 12px; right: 20px;
+    }
+    .service-card__icon-wrap {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,.12); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; margin-bottom: 16px;
+    }
+    .service-card__title {
+      font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px;
+    }
+    .service-card__tagline { font-size: .85rem; color: rgba(255,255,255,.65); }
+    .service-card__body { padding: 28px; background: #fff; flex: 1; }
+    .service-card__body p { font-size: .9rem; color: var(--gray-600); margin-bottom: 20px; line-height: 1.7; }
+    .service-card__list { display: flex; flex-direction: column; gap: 8px; }
+    .service-card__list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: .88rem; color: var(--gray-600);
+    }
+    .service-card__list li::before {
+      content: '✓'; color: var(--blue); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── How we work ──────────────────────────────────────────────── */
+    .steps { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; }
+    .step {
+      display: grid; grid-template-columns: 56px 1fr; gap: 24px;
+      position: relative; padding-bottom: 40px;
+    }
+    .step:last-child { padding-bottom: 0; }
+    .step__line {
+      position: absolute; left: 27px; top: 56px; bottom: 0;
+      width: 2px; background: var(--gray-200);
+    }
+    .step:last-child .step__line { display: none; }
+    .step__num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800; flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .step__content { padding-top: 10px; }
+    .step__content h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .step__content p { font-size: .9rem; color: var(--gray-600); line-height: 1.7; }
+
+    /* ── Testimonials ─────────────────────────────────────────────── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .testimonial-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 32px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .testimonial-stars { display: flex; gap: 3px; }
+    .testimonial-stars span { color: var(--orange); }
+    .testimonial-quote {
+      font-size: .95rem; color: var(--gray-800); line-height: 1.7;
+      flex: 1;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--blue-lt); color: var(--blue);
+      font-size: 1rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: .9rem; font-weight: 700; color: var(--navy); }
+    .testimonial-role { font-size: .8rem; color: var(--gray-400); }
+
+    /* ── About ────────────────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-image-box {
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--navy), #1d4ed8);
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px;
+    }
+    .about-image-box__inner {
+      text-align: center; color: #fff;
+    }
+    .about-image-box__year {
+      font-size: 5rem; font-weight: 800; color: rgba(255,255,255,.12);
+      line-height: 1;
+    }
+    .about-image-box__text {
+      font-size: 1.25rem; font-weight: 700;
+      margin-top: -24px; position: relative;
+    }
+    .about-image-box__sub {
+      font-size: .9rem; color: rgba(255,255,255,.65); margin-top: 8px;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--orange); color: #fff;
+      border-radius: 14px; padding: 16px 20px;
+      text-align: center; box-shadow: var(--shadow);
+    }
+    .about-badge__num { font-size: 1.5rem; font-weight: 800; display: block; }
+    .about-badge__text { font-size: .75rem; font-weight: 600; opacity: .9; }
+    .about-values { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+    .about-value {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .about-value__icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--blue-lt); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .about-value h4 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .about-value p { font-size: .875rem; color: var(--gray-600); line-height: 1.6; }
+
+    /* ── FAQ ──────────────────────────────────────────────────────── */
+    .faq { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      border: 1px solid var(--gray-200); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: #fff;
+      font-size: .95rem; font-weight: 600; color: var(--navy);
+      cursor: pointer; gap: 16px; text-align: left;
+      border: none; font-family: inherit;
+      transition: background .2s;
+    }
+    .faq-question:hover { background: var(--gray-50); }
+    .faq-chevron {
+      font-size: .75rem; color: var(--gray-400);
+      transition: transform .3s; flex-shrink: 0;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer__inner {
+      padding: 0 24px 20px;
+      font-size: .9rem; color: var(--gray-600); line-height: 1.7;
+      border-top: 1px solid var(--gray-200);
+      padding-top: 16px;
+    }
+
+    /* ── CTA Banner ───────────────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #1d4ed8 100%);
+      padding: 80px 24px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(99,179,237,.12) 0%, transparent 60%);
+    }
+    .cta-banner__inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .cta-banner h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .cta-banner p { font-size: 1rem; color: rgba(255,255,255,.75); margin-bottom: 36px; }
+    .cta-banner__actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    /* ── Contact ──────────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start;
+    }
+    .contact-info h2 { font-size: 1.75rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+    .contact-info > p { font-size: .95rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 40px; }
+    .contact-details { display: flex; flex-direction: column; gap: 20px; }
+    .contact-detail {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-detail__icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue-lt); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-detail__label { font-size: .75rem; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+    .contact-detail__value { font-size: .95rem; font-weight: 600; color: var(--navy); }
+    .contact-detail__value a:hover { color: var(--blue); }
+
+    /* Contact form */
+    .contact-form-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: 16px; padding: 40px; box-shadow: var(--shadow-sm);
+    }
+    .contact-form-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .contact-form-card > p { font-size: .875rem; color: var(--gray-400); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: .9rem; color: var(--gray-800);
+      font-family: inherit; outline: none;
+      transition: border .2s, box-shadow .2s;
+      background: #fff;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,86,219,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { display: flex; flex-direction: column; gap: 10px; }
+    .form-submit .btn { justify-content: center; }
+    .form-privacy {
+      font-size: .78rem; color: var(--gray-400); text-align: center; line-height: 1.5;
+    }
+    .form-success {
+      display: none; text-align: center; padding: 24px;
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;
+      color: #16a34a;
+    }
+    .form-success h4 { font-weight: 700; margin-bottom: 6px; }
+    .form-success p { font-size: .875rem; }
+
+    /* ── Software logos ───────────────────────────────────────────── */
+    .software-bar {
+      background: var(--gray-100); padding: 28px 24px;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .software-bar__inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .software-bar__label { font-size: .8rem; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+    .software-bar__items { display: flex; gap: 12px; flex-wrap: wrap; }
+    .software-pill {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: 8px; padding: 6px 14px;
+      font-size: .82rem; font-weight: 600; color: var(--gray-600);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────── */
+    footer {
+      background: #0a1628; color: rgba(255,255,255,.65);
+      padding: 60px 24px 32px;
+    }
+    .footer__inner {
+      max-width: 1120px; margin: 0 auto;
+    }
+    .footer__top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer__brand p { font-size: .875rem; line-height: 1.7; margin-top: 12px; }
+    .footer__col h4 { font-size: .85rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 16px; }
+    .footer__col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer__col li a { font-size: .875rem; transition: color .2s; }
+    .footer__col li a:hover { color: #fff; }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer__bottom p { font-size: .8rem; }
+    .footer__bottom a { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .footer__bottom a:hover { color: rgba(255,255,255,.8); }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__card { display: none; }
+      .stats-bar__inner { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .nav__links { display: none; }
+      .nav__links.open {
+        display: flex; flex-direction: column; gap: 0;
+        position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+        background: var(--navy); padding: 24px;
+        z-index: 99;
+      }
+      .nav__links.open a {
+        color: rgba(255,255,255,.85) !important;
+        padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+        font-size: 1rem;
+      }
+      .nav__hamburger { display: flex; }
+      .usps-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer__top { grid-template-columns: 1fr; }
+      .hero { padding: 120px 24px 64px; }
+    }
+    @media (max-width: 480px) {
+      .stats-bar__inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Scroll fade-in ───────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .fade-in-delay-1 { transition-delay: .1s; }
+    .fade-in-delay-2 { transition-delay: .2s; }
+    .fade-in-delay-3 { transition-delay: .3s; }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────────── -->
+<nav class="nav" id="navbar">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#">Administratie<span>Houten</span></a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#werkwijze">Werkwijze</a></li>
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav__cta">Gratis kennismaking</a></li>
+    </ul>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__inner">
+    <div>
+      <div class="hero__eyebrow">⭐ Al 16 jaar specialist in Houten en omgeving</div>
+      <h1 class="hero__title">
+        Uw administratie<br/>geregeld, <em>zonder gedoe</em>
+      </h1>
+      <p class="hero__sub">
+        U runt uw bedrijf. Wij zorgen voor de boekhouding, belastingaangiften en financieel advies. Persoonlijk contact, transparante tarieven en altijd gericht op zo min mogelijk belasting. Uiteraard binnen de wet.
+      </p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn-primary">
+          ✉ Vrijblijvend kennismaken
+        </a>
+        <a href="#diensten" class="btn btn-outline">
+          Bekijk onze diensten
+        </a>
+      </div>
+      <div class="hero__proof">
+        <div class="hero__stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="hero__proof-text">
+          <strong>Klanten van Houten tot Amsterdam</strong> vertrouwen al jaren op ons
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick contact form (desktop) -->
+    <div class="hero__card">
+      <h3>Direct contact opnemen</h3>
+      <form id="heroForm" onsubmit="submitForm(event, 'heroSuccess')">
+        <div class="hero__form-group">
+          <label>Naam</label>
+          <input type="text" placeholder="Uw naam" required />
+        </div>
+        <div class="hero__form-group">
+          <label>E-mailadres</label>
+          <input type="email" placeholder="u@bedrijf.nl" required />
+        </div>
+        <div class="hero__form-group">
+          <label>Wat zoekt u?</label>
+          <select required>
+            <option value="" disabled selected>Kies een dienst</option>
+            <option>Boekhouding uitbesteden</option>
+            <option>Belastingaangifte</option>
+            <option>Financieel advies</option>
+            <option>Eenmanszaak naar BV</option>
+            <option>Overig</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Stuur mij een reactie →</button>
+      </form>
+      <div id="heroSuccess" class="form-success">
+        <h4>Bedankt! We nemen snel contact op.</h4>
+        <p>Normaal gesproken reageren we binnen één werkdag.</p>
+      </div>
+      <p class="hero__card-note">🔒 Geen spam. Wij reageren binnen één werkdag.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats Bar ──────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stats-bar__inner">
+    <div class="stat fade-in">
+      <span class="stat__number" data-target="16">0</span>
+      <p class="stat__label">Jaar ervaring (sinds 2008)</p>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stat fade-in fade-in-delay-1">
+      <span class="stat__number" data-target="100">0</span>
+      <p class="stat__label">Tevreden klanten +</p>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stat fade-in fade-in-delay-2">
+      <span class="stat__number" data-target="100">0</span>
+      <p class="stat__label">% transparante tarieven</p>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stat fade-in fade-in-delay-3">
+      <span class="stat__number" data-target="5">0</span>
+      <p class="stat__label">Boekhoudpakketten ondersteund</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Software Bar ───────────────────────────────────────────────── -->
+<div class="software-bar">
+  <div class="software-bar__inner">
+    <span class="software-bar__label">Wij werken met</span>
+    <div class="software-bar__items">
+      <span class="software-pill">Exact Online</span>
+      <span class="software-pill">Visma eAccounting</span>
+      <span class="software-pill">SnelStart</span>
+      <span class="software-pill">MoneyMonk</span>
+      <span class="software-pill">Excel</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── USPs ───────────────────────────────────────────────────────── -->
+<section class="section" id="waarom">
+  <div class="container">
+    <div class="fade-in">
+      <span class="badge">Waarom Administratie Houten?</span>
+      <h2 class="section-title">Wat ons anders maakt dan<br/>andere kantoren</h2>
+      <p class="section-sub">Geen callcenter, geen verborgen kosten. Gewoon een betrouwbare adviseur die meedenkt.</p>
+    </div>
+    <div class="usps-grid">
+      <div class="usp-card fade-in">
+        <div class="usp-card__icon">💰</div>
+        <h3>Zo min mogelijk belasting, altijd legaal</h3>
+        <p>Wij kennen de fiscale wetgeving van binnen en van buiten. Ons doel is uw belastingdruk te verlagen op alle manieren die de wet toestaat. Dat scheelt u soms duizenden euro's per jaar.</p>
+      </div>
+      <div class="usp-card fade-in fade-in-delay-1">
+        <div class="usp-card__icon">🔓</div>
+        <h3>Uw software of de onze, u kiest</h3>
+        <p>U wilt zelf de administratie bijhouden in Exact, Visma of Excel? Prima, wij controleren en vullen aan. Liever alles uitbesteden? Dat kan ook. U bepaalt de mate van betrokkenheid.</p>
+      </div>
+      <div class="usp-card fade-in fade-in-delay-2">
+        <div class="usp-card__icon">🤝</div>
+        <h3>Persoonlijk en direct contact</h3>
+        <p>U belt of mailt rechtstreeks met de adviseur die uw dossier kent. Geen doorverbinden, geen wachtrijen. Gewoon iemand die u kent en die uw situatie begrijpt.</p>
+      </div>
+      <div class="usp-card fade-in">
+        <div class="usp-card__icon">📋</div>
+        <h3>Transparante tarieven vooraf</h3>
+        <p>Wij zijn helder over onze prijzen voordat u iets ondertekent. Geen onaangename verrassingen op de factuur. U weet precies waar u aan toe bent.</p>
+      </div>
+      <div class="usp-card fade-in fade-in-delay-1">
+        <div class="usp-card__icon">🏢</div>
+        <h3>Van eenmanszaak naar BV</h3>
+        <p>Overweegt u een BV-structuur? Wij begeleiden het hele traject: intentieverklaring, inbrengverklaring, arbeidsovereenkomst en rekening-courantovereenkomst. Van A tot Z geregeld.</p>
+      </div>
+      <div class="usp-card fade-in fade-in-delay-2">
+        <div class="usp-card__icon">⏱</div>
+        <h3>U heeft tijd voor wat u leuk vindt</h3>
+        <p>Administratie kost u gemiddeld uren per week. Die uren besteedt u liever aan uw klanten, uw vak, of gewoon aan uzelf. Laat ons de bonnetjes verwerken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ───────────────────────────────────────────────────── -->
+<section class="section section--alt" id="diensten">
+  <div class="container">
+    <div class="fade-in">
+      <span class="badge">Onze diensten</span>
+      <h2 class="section-title">Alles voor uw financiën,<br/>op één plek</h2>
+      <p class="section-sub">Of u nu zzp'er bent of een groeiend bedrijf runt, wij hebben een passende oplossing.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Boekhouding -->
+      <div class="service-card fade-in">
+        <div class="service-card__header">
+          <span class="service-card__num">01</span>
+          <div class="service-card__icon-wrap">📊</div>
+          <h3 class="service-card__title">Boekhouding</h3>
+          <p class="service-card__tagline">Volledig ontzorgd of samen werken</p>
+        </div>
+        <div class="service-card__body">
+          <p>Scan uw bonnetjes met de Visma Scanner of MoneyMonk app. Wij doen de rest: verwerking, BTW-aangifte en jaarrekening worden snel na afloop van het boekjaar opgesteld.</p>
+          <ul class="service-card__list">
+            <li>Verwerking van alle in- en verkoopfacturen</li>
+            <li>BTW-aangiften per kwartaal of maand</li>
+            <li>Jaarrekening en KvK-publicatiestukken</li>
+            <li>Werkt met uw bestaande software</li>
+            <li>Eenvoudige Excel-administratie beschikbaar</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Belastingaangiften -->
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="service-card__header">
+          <span class="service-card__num">02</span>
+          <div class="service-card__icon-wrap">📝</div>
+          <h3 class="service-card__title">Belastingaangiften</h3>
+          <p class="service-card__tagline">Nooit meer een deadline missen</p>
+        </div>
+        <div class="service-card__body">
+          <p>Wij verzorgen al uw fiscale verplichtingen zodat u nergens aan hoeft te denken. Altijd compliant, altijd op tijd, altijd gericht op het laagste legale belastingbedrag.</p>
+          <ul class="service-card__list">
+            <li>Aangifte omzetbelasting (BTW)</li>
+            <li>Aangifte inkomstenbelasting</li>
+            <li>Aangifte vennootschapsbelasting</li>
+            <li>KvK-publicatiedocumenten</li>
+            <li>Bezwaar en correspondentie met Belastingdienst</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Financieel advies -->
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="service-card__header">
+          <span class="service-card__num">03</span>
+          <div class="service-card__icon-wrap">💡</div>
+          <h3 class="service-card__title">Financieel Advies</h3>
+          <p class="service-card__tagline">Meer dan alleen cijfers</p>
+        </div>
+        <div class="service-card__body">
+          <p>Uw boekhouder ziet meer dan cijfers. Wij kijken mee naar de bredere financiële situatie en helpen u slimme keuzes te maken voor de lange termijn.</p>
+          <ul class="service-card__list">
+            <li>Eenmanszaak vs. BV-structuur</li>
+            <li>Begeleiding inbreng eenmanszaak in BV</li>
+            <li>Advies over pensioen en verzekeringen</li>
+            <li>Holding + werkmaatschappij structuur</li>
+            <li>Prognoses en financiële planning</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;" class="fade-in">
+      <a href="#contact" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
+        Vraag een vrijblijvende offerte aan →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── How we work ────────────────────────────────────────────────── -->
+<section class="section" id="werkwijze">
+  <div class="container">
+    <div style="text-align:center;" class="fade-in">
+      <span class="badge">Zo werken wij</span>
+      <h2 class="section-title">In 4 stappen aan de slag</h2>
+      <p class="section-sub" style="margin: 0 auto 64px;">Eenvoudig instappen, geen gedoe. Van eerste contact tot volledig ontzorgt.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step__line"></div>
+        <div class="step__num">1</div>
+        <div class="step__content">
+          <h3>Gratis kennismakingsgesprek</h3>
+          <p>U neemt contact op en wij plannen een gesprek in, telefonisch of op kantoor in Houten. We bespreken uw situatie, wensen en beantwoorden al uw vragen. Geen verplichtingen.</p>
+        </div>
+      </div>
+      <div class="step fade-in fade-in-delay-1">
+        <div class="step__line"></div>
+        <div class="step__num">2</div>
+        <div class="step__content">
+          <h3>Helder voorstel met vaste prijs</h3>
+          <p>U ontvangt een concreet voorstel met een duidelijke prijsafspraak. Geen uurtje-factuurtje waarbij u achteraf voor verrassingen staat. U weet precies wat u betaalt.</p>
+        </div>
+      </div>
+      <div class="step fade-in fade-in-delay-2">
+        <div class="step__line"></div>
+        <div class="step__num">3</div>
+        <div class="step__content">
+          <h3>Soepele overdracht</h3>
+          <p>Wij regelen de overdracht van uw bestaande administratie. Of u nu van een andere accountant overstapt of voor het eerst uitbesteedt, alles loopt naadloos door.</p>
+        </div>
+      </div>
+      <div class="step fade-in fade-in-delay-3">
+        <div class="step__line"></div>
+        <div class="step__num">4</div>
+        <div class="step__content">
+          <h3>Volledig ontzorgd</h3>
+          <p>U concentreert zich op uw werk. Wij verwerken de administratie, halen deadlines en houden u op de hoogte van wat relevant is. U heeft altijd direct contact met uw vaste adviseur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ───────────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="fade-in">
+      <span class="badge">Klanten aan het woord</span>
+      <h2 class="section-title">Wat onze klanten zeggen</h2>
+      <p class="section-sub">Van zzp'ers tot middelgrote ondernemingen. Zij vertrouwen al jaren op Administratie Houten.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"Administratie Houten heeft ons bedrijf geholpen met nauwkeurige en professionele financiële diensten. Ze denken actief mee en weten precies hoe ze de belasting kunnen optimaliseren. Een echte aanwinst."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">EJ</div>
+          <div>
+            <p class="testimonial-name">Erik Jansen</p>
+            <p class="testimonial-role">Ondernemer, Houten</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in fade-in-delay-1">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"Eindelijk een kantoor dat helder is over de prijs én altijd bereikbaar is. Ik stuur mijn bonnetjes via de app en alles wordt netjes verwerkt. Meer tijd voor mijn klanten."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AV</div>
+          <div>
+            <p class="testimonial-name">Anja de Vries</p>
+            <p class="testimonial-role">ZZP'er, Utrecht</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in fade-in-delay-2">
+        <div class="testimonial-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-quote">"De overstap van eenmanszaak naar BV leek ingewikkeld, maar Administratie Houten heeft alles geregeld: van de inbrengverklaring tot de overeenkomsten. Ik hoefde nergens naar om te kijken."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div>
+            <p class="testimonial-name">Mark Kuijpers</p>
+            <p class="testimonial-role">DGA, Nieuwegein</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ──────────────────────────────────────────────────────── -->
+<section class="section" id="over-ons">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade-in">
+        <div class="about-image-box">
+          <div class="about-image-box__inner">
+            <div class="about-image-box__year">2008</div>
+            <p class="about-image-box__text">Opgericht in Houten</p>
+            <p class="about-image-box__sub">Begonnen als Administratiekantoor Daan Roos,<br/>nu Administratie Houten</p>
+          </div>
+        </div>
+        <div class="about-badge">
+          <span class="about-badge__num">16+</span>
+          <span class="about-badge__text">jaar ervaring</span>
+        </div>
+      </div>
+      <div class="fade-in fade-in-delay-1">
+        <span class="badge">Over ons</span>
+        <h2 class="section-title">Een vertrouwde naam<br/>in de regio</h2>
+        <p style="color: var(--gray-600); margin-bottom: 12px; line-height:1.7;">
+          Administratie Houten is gevestigd aan de Lange Schaft 32-H in Houten en werkt voor zelfstandigen, kleine en middelgrote ondernemingen in de regio: van Houten en Nieuwegein tot Utrecht. Maar ook klanten in Amsterdam, Venlo en elders in het land weten ons te vinden.
+        </p>
+        <p style="color: var(--gray-600); margin-bottom: 32px; line-height:1.7;">
+          Begonnen in 2008 als Administratiekantoor Daan Roos, later voortgezet als ADR Houten en na een samenvoeging met 123-Administratie Houten omgedoopt tot Administratie Houten. Dezelfde mensen, dezelfde aanpak, meer capaciteit.
+        </p>
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value__icon">🎯</div>
+            <div>
+              <h4>Deskundigheid & belastingoptimalisatie</h4>
+              <p>We volgen voortdurend de fiscale wetgeving en forums om u altijd het laagst mogelijke belastingbedrag te garanderen, uiteraard volledig legaal.</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value__icon">🛡</div>
+            <div>
+              <h4>Integriteit en transparantie</h4>
+              <p>Eerlijk over tarieven, eerlijk over wat wel en niet kan. Geen verborgen kosten, geen vage facturen achteraf.</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value__icon">👤</div>
+            <div>
+              <h4>Persoonlijke klantrelatie</h4>
+              <p>Uw situatie is uniek. We luisteren, stellen vragen en bieden een oplossing die bij u past. Geen standaardpakket.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA Banner ─────────────────────────────────────────────────── -->
+<div class="cta-banner">
+  <div class="cta-banner__inner fade-in">
+    <h2>Klaar om uw administratie uit handen te geven?</h2>
+    <p>Plan een gratis kennismakingsgesprek in. Geen verplichtingen, geen verkooppraatje. Gewoon bekijken of we bij elkaar passen.</p>
+    <div class="cta-banner__actions">
+      <a href="#contact" class="btn btn-primary">Vrijblijvend kennismaken →</a>
+      <a href="tel:+31XXXXXXXXXX" class="btn btn-outline">Bel ons direct</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────── -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;" class="fade-in">
+      <span class="badge">Veelgestelde vragen</span>
+      <h2 class="section-title">Antwoorden op uw vragen</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Wat kost de boekhouding?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            We werken met transparante vaste tarieven afgestemd op uw situatie: het aantal transacties, de rechtsvorm en de gewenste diensten. U ontvangt vooraf een helder voorstel, geen uurtje-factuurtje. Neem contact op voor een vrijblijvende prijsindicatie.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Kan ik zelf mijn administratie bijhouden en jullie alleen de aangifte laten doen?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            Ja, zeker. U kunt uw eigen administratie bijhouden in Exact Online, Visma eAccounting, SnelStart, MoneyMonk of Excel. Wij controleren, vullen aan waar nodig en verzorgen de jaarrekening en fiscale aangiften. U bepaalt hoeveel u zelf wilt doen.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Ik heb al een boekhouder. Kan ik overstappen?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            Dat kan, en het is eenvoudiger dan u denkt. Wij regelen de overdracht van het dossier en zorgen dat er geen continuïteitsproblemen zijn. Bij een tussentijdse overstap stemmen we alles af zodat u niets mist.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Wanneer is het slim om een BV op te richten?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            Globaal geldt: bij een winst van circa €75.000 of meer per jaar kan een BV-structuur fiscaal aantrekkelijker worden. Maar het hangt af van uw persoonlijke situatie, toekomstplannen en risicoprofiel. Wij adviseren u hierover en begeleiden het volledige traject van inbreng en oprichting.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Hoe snel reageert u op vragen?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            Wij streven ernaar om binnen één werkdag te reageren op e-mails en berichten. Heeft u een dringende vraag? Dan kunt u ook bellen en krijgt u direct iemand aan de lijn die uw dossier kent.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Werken jullie ook met klanten buiten Houten?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer__inner">
+            Ja. Hoewel we gevestigd zijn in Houten bedienen we klanten door heel Nederland, van Amsterdam en Utrecht tot Venlo. Veel van onze diensten verlopen digitaal, dus afstand is zelden een bezwaar.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ────────────────────────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <span class="badge">Contact</span>
+        <div class="contact-info">
+          <h2>Plan een gratis kennismakingsgesprek</h2>
+          <p>Benieuwd of wij bij u passen? Neem vrijblijvend contact op. We bespreken uw situatie en geven direct een eerlijke indruk van wat we voor u kunnen betekenen.</p>
+        </div>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail__icon">📍</div>
+            <div>
+              <p class="contact-detail__label">Adres</p>
+              <p class="contact-detail__value">Lange Schaft 32-H<br/>3991 AP Houten</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail__icon">✉</div>
+            <div>
+              <p class="contact-detail__label">E-mail</p>
+              <p class="contact-detail__value"><a href="mailto:info@adrhouten.nl">info@adrhouten.nl</a></p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail__icon">📞</div>
+            <div>
+              <p class="contact-detail__label">Telefoon</p>
+              <p class="contact-detail__value"><a href="tel:+31XXXXXXXXXX">Zie contactformulier →</a></p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail__icon">🕐</div>
+            <div>
+              <p class="contact-detail__label">Reactietijd</p>
+              <p class="contact-detail__value">Binnen één werkdag</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card fade-in fade-in-delay-1">
+        <h3>Stuur ons een bericht</h3>
+        <p>We reageren binnen één werkdag.</p>
+        <form id="contactForm" onsubmit="submitForm(event, 'contactSuccess')">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Voornaam *</label>
+              <input type="text" placeholder="Jan" required />
+            </div>
+            <div class="form-group">
+              <label>Achternaam *</label>
+              <input type="text" placeholder="de Vries" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mailadres *</label>
+            <input type="email" placeholder="jan@bedrijf.nl" required />
+          </div>
+          <div class="form-group">
+            <label>Telefoonnummer</label>
+            <input type="tel" placeholder="06 – – – – – – – –" />
+          </div>
+          <div class="form-group">
+            <label>Wat kan ik voor u betekenen? *</label>
+            <select required>
+              <option value="" disabled selected>Kies een onderwerp</option>
+              <option>Boekhouding uitbesteden</option>
+              <option>Belastingaangifte (IB / VPB / BTW)</option>
+              <option>Financieel advies</option>
+              <option>Eenmanszaak naar BV</option>
+              <option>Overstap van andere accountant</option>
+              <option>Overig</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bericht</label>
+            <textarea placeholder="Geef kort aan wat uw situatie is en wat u zoekt..."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary" style="font-size:1rem; padding:15px 28px;">
+              Verstuur bericht →
+            </button>
+            <p class="form-privacy">🔒 Uw gegevens worden vertrouwelijk behandeld en nooit gedeeld met derden.</p>
+          </div>
+        </form>
+        <div id="contactSuccess" class="form-success">
+          <h4>Bedankt voor uw bericht!</h4>
+          <p>We nemen zo snel mogelijk contact met u op, uiterlijk binnen één werkdag.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <p style="font-size:1.2rem;font-weight:800;color:#fff;">Administratie<span style="color:#f59e0b;">Houten</span></p>
+        <p>Betrouwbare financiële diensten voor zelfstandigen en bedrijven. Gevestigd in Houten, actief door heel Nederland.</p>
+        <p style="margin-top:8px;font-size:.8rem;">KvK: [nummer invullen] &nbsp;|&nbsp; BTW: [nummer invullen]</p>
+      </div>
+      <div class="footer__col">
+        <h4>Diensten</h4>
+        <ul>
+          <li><a href="#diensten">Boekhouding</a></li>
+          <li><a href="#diensten">Belastingaangiften</a></li>
+          <li><a href="#diensten">Financieel advies</a></li>
+          <li><a href="#diensten">Eenmanszaak naar BV</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Bedrijf</h4>
+        <ul>
+          <li><a href="#over-ons">Over ons</a></li>
+          <li><a href="#werkwijze">Werkwijze</a></li>
+          <li><a href="#faq">Veelgestelde vragen</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@adrhouten.nl">info@adrhouten.nl</a></li>
+          <li><a href="#">Lange Schaft 32-H</a></li>
+          <li><a href="#">3991 AP Houten</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Administratie Houten – Administratiekantoor Daan Roos / ADR Houten</p>
+      <a href="#">Algemene voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Anchor scroll (JS fallback for iframe/preview environments) ─
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 72; // nav height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Navbar scroll ──────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Mobile menu ────────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+    });
+  });
+
+  // ── FAQ accordion ──────────────────────────────────────────────
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Scroll fade-in ─────────────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Animated counters ──────────────────────────────────────────
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const duration = 1400;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current) + (target === 100 ? '' : '');
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  }
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat__number').forEach(el => counterObs.observe(el));
+
+  // ── Formspree integratie ───────────────────────────────────────
+  // Stap 1: maak een gratis account op formspree.io
+  // Stap 2: maak een nieuw formulier aan en kopieer het ID (bijv. "xabcd123")
+  // Stap 3: vervang YOUR_FORMSPREE_ID hieronder door dat ID
+  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+  async function submitForm(e, successId) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const success = document.getElementById(successId);
+
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      alert('Vul eerst je Formspree form-ID in (zie de code bovenaan het script-blok).');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Versturen...';
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        const json = await res.json();
+        const msg = json.errors?.map(e => e.message).join(', ') || 'Er is iets misgegaan.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verstuur bericht →';
+        alert('Kon formulier niet versturen: ' + msg);
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Verstuur bericht →';
+      alert('Netwerkfout. Controleer uw verbinding en probeer opnieuw.');
+    }
+  }
+</script>
+</body>
+</html>
