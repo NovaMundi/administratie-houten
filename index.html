@@ -678,7 +678,9 @@
     <!-- Quick contact form (desktop) -->
     <div class="hero__card">
       <h3>Direct contact opnemen</h3>
-      <form id="heroForm" onsubmit="submitForm(event, 'heroSuccess')">
+      <form id="heroForm" name="hero-contact" netlify netlify-honeypot="bot-field" onsubmit="submitForm(event, 'heroSuccess')">
+        <input type="hidden" name="form-name" value="hero-contact" />
+        <input type="hidden" name="bot-field" style="display:none" />
         <div class="hero__form-group">
           <label>Naam</label>
           <input type="text" placeholder="Uw naam" required />
@@ -1157,7 +1159,9 @@
       <div class="contact-form-card fade-in fade-in-delay-1">
         <h3>Stuur ons een bericht</h3>
         <p>We reageren binnen één werkdag.</p>
-        <form id="contactForm" onsubmit="submitForm(event, 'contactSuccess')">
+        <form id="contactForm" name="contact" netlify netlify-honeypot="bot-field" onsubmit="submitForm(event, 'contactSuccess')">
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" style="display:none" />
           <div class="form-row">
             <div class="form-group">
               <label>Voornaam *</label>
@@ -1326,44 +1330,28 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat__number').forEach(el => counterObs.observe(el));
 
-  // ── Formspree integratie ───────────────────────────────────────
-  // Stap 1: maak een gratis account op formspree.io
-  // Stap 2: maak een nieuw formulier aan en kopieer het ID (bijv. "xabcd123")
-  // Stap 3: vervang YOUR_FORMSPREE_ID hieronder door dat ID
-  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
-
+  // ── Formulier verzending via Netlify Forms ─────────────────────
   async function submitForm(e, successId) {
     e.preventDefault();
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
     const success = document.getElementById(successId);
 
-    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-      alert('Vul eerst je Formspree form-ID in (zie de code bovenaan het script-blok).');
-      return;
-    }
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Versturen...';
 
-    const data = Object.fromEntries(new FormData(form));
-
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
       });
 
       if (res.ok) {
         form.style.display = 'none';
         success.style.display = 'block';
       } else {
-        const json = await res.json();
-        const msg = json.errors?.map(e => e.message).join(', ') || 'Er is iets misgegaan.';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Verstuur bericht →';
-        alert('Kon formulier niet versturen: ' + msg);
+        throw new Error('Serverfout');
       }
     } catch {
       submitBtn.disabled = false;
