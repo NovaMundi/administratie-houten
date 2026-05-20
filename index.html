@@ -681,15 +681,15 @@
       <form id="heroForm" onsubmit="submitForm(event, 'heroSuccess')">
         <div class="hero__form-group">
           <label>Naam</label>
-          <input type="text" placeholder="Uw naam" required />
+          <input type="text" name="Naam" placeholder="Uw naam" required />
         </div>
         <div class="hero__form-group">
           <label>E-mailadres</label>
-          <input type="email" placeholder="u@bedrijf.nl" required />
+          <input type="email" name="E-mailadres" placeholder="u@bedrijf.nl" required />
         </div>
         <div class="hero__form-group">
           <label>Wat zoekt u?</label>
-          <select required>
+          <select name="Wat zoekt u?" required>
             <option value="" disabled selected>Kies een dienst</option>
             <option>Boekhouding uitbesteden</option>
             <option>Belastingaangifte</option>
@@ -1161,24 +1161,24 @@
           <div class="form-row">
             <div class="form-group">
               <label>Voornaam *</label>
-              <input type="text" placeholder="Jan" required />
+              <input type="text" name="Voornaam" placeholder="Jan" required />
             </div>
             <div class="form-group">
               <label>Achternaam *</label>
-              <input type="text" placeholder="de Vries" required />
+              <input type="text" name="Achternaam" placeholder="de Vries" required />
             </div>
           </div>
           <div class="form-group">
             <label>E-mailadres *</label>
-            <input type="email" placeholder="jan@bedrijf.nl" required />
+            <input type="email" name="E-mailadres" placeholder="jan@bedrijf.nl" required />
           </div>
           <div class="form-group">
             <label>Telefoonnummer</label>
-            <input type="tel" placeholder="06 – – – – – – – –" />
+            <input type="tel" name="Telefoonnummer" placeholder="06 – – – – – – – –" />
           </div>
           <div class="form-group">
             <label>Wat kan ik voor u betekenen? *</label>
-            <select required>
+            <select name="Wat kan ik voor u betekenen?" required>
               <option value="" disabled selected>Kies een onderwerp</option>
               <option>Boekhouding uitbesteden</option>
               <option>Belastingaangifte (IB / VPB / BTW)</option>
@@ -1190,7 +1190,7 @@
           </div>
           <div class="form-group">
             <label>Bericht</label>
-            <textarea placeholder="Geef kort aan wat uw situatie is en wat u zoekt..."></textarea>
+            <textarea name="Bericht" placeholder="Geef kort aan wat uw situatie is en wat u zoekt..."></textarea>
           </div>
           <div class="form-submit">
             <button type="submit" class="btn btn-primary" style="font-size:1rem; padding:15px 28px;">
@@ -1337,17 +1337,20 @@
     submitBtn.textContent = 'Versturen...';
 
     try {
-      const res = await fetch('https://api.administratiehouten.nl/contact.php', {
+      const res = await fetch('/.netlify/functions/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
+      const json = await res.json();
 
-      if (res.ok) {
+      if (json.ok) {
         form.style.display = 'none';
         success.style.display = 'block';
       } else {
-        throw new Error('Serverfout');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verstuur bericht →';
+        alert('Kon formulier niet versturen: ' + (json.error || 'Onbekende fout'));
       }
     } catch {
       submitBtn.disabled = false;
