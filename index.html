@@ -678,9 +678,9 @@
     <!-- Quick contact form (desktop) -->
     <div class="hero__card">
       <h3>Direct contact opnemen</h3>
-      <form id="heroForm" name="hero-contact" netlify netlify-honeypot="bot-field" onsubmit="submitForm(event, 'heroSuccess')">
+      <form id="heroForm" name="hero-contact" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event, 'heroSuccess')">
         <input type="hidden" name="form-name" value="hero-contact" />
-        <input type="hidden" name="bot-field" style="display:none" />
+        <p style="display:none"><input name="bot-field" /></p>
         <div class="hero__form-group">
           <label>Naam</label>
           <input type="text" placeholder="Uw naam" required />
@@ -1159,9 +1159,9 @@
       <div class="contact-form-card fade-in fade-in-delay-1">
         <h3>Stuur ons een bericht</h3>
         <p>We reageren binnen één werkdag.</p>
-        <form id="contactForm" name="contact" netlify netlify-honeypot="bot-field" onsubmit="submitForm(event, 'contactSuccess')">
+        <form id="contactForm" name="contact" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event, 'contactSuccess')">
           <input type="hidden" name="form-name" value="contact" />
-          <input type="hidden" name="bot-field" style="display:none" />
+          <p style="display:none"><input name="bot-field" /></p>
           <div class="form-row">
             <div class="form-group">
               <label>Voornaam *</label>
