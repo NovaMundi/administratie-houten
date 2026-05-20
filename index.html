@@ -678,9 +678,7 @@
     <!-- Quick contact form (desktop) -->
     <div class="hero__card">
       <h3>Direct contact opnemen</h3>
-      <form id="heroForm" name="hero-contact" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event, 'heroSuccess')">
-        <input type="hidden" name="form-name" value="hero-contact" />
-        <p style="display:none"><input name="bot-field" /></p>
+      <form id="heroForm" onsubmit="submitForm(event, 'heroSuccess')">
         <div class="hero__form-group">
           <label>Naam</label>
           <input type="text" placeholder="Uw naam" required />
@@ -1159,9 +1157,7 @@
       <div class="contact-form-card fade-in fade-in-delay-1">
         <h3>Stuur ons een bericht</h3>
         <p>We reageren binnen één werkdag.</p>
-        <form id="contactForm" name="contact" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event, 'contactSuccess')">
-          <input type="hidden" name="form-name" value="contact" />
-          <p style="display:none"><input name="bot-field" /></p>
+        <form id="contactForm" onsubmit="submitForm(event, 'contactSuccess')">
           <div class="form-row">
             <div class="form-group">
               <label>Voornaam *</label>
@@ -1341,10 +1337,10 @@
     submitBtn.textContent = 'Versturen...';
 
     try {
-      const res = await fetch('/', {
+      const res = await fetch('https://api.administratiehouten.nl/contact.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
 
       if (res.ok) {
