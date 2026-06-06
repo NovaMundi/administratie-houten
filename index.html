@@ -27,9 +27,9 @@
 
     /* ── Tokens ───────────────────────────────────────────────────── */
     :root {
-      --navy:   #1a4fc4;
-      --blue:   #2d6be4;
-      --blue-lt:#dbeafe;
+      --navy:   #111827;
+      --blue:   #00BCEF;
+      --blue-lt:#e0f7fd;
       --orange: #ff6200;
       --orange-dk: #e05500;
       --gray-50: #f8fafc;
@@ -107,8 +107,9 @@
       font-size: 1.15rem; font-weight: 800; color: #fff;
       transition: color .3s;
     }
-    .nav.scrolled .nav__logo { color: var(--navy); }
-    .nav__logo span { color: var(--orange); }
+    .nav.scrolled .nav__logo { color: var(--blue); }
+    .nav__logo span { color: var(--navy); }
+    .nav.scrolled .nav__logo span { color: var(--navy); }
     .nav__links {
       display: flex; align-items: center; gap: 32px;
     }
@@ -144,7 +145,7 @@
     /* ── Hero ─────────────────────────────────────────────────────── */
     .hero {
       position: relative; overflow: hidden;
-      background: linear-gradient(135deg, #1a4fc4 0%, #2d6be4 60%, #4f8ef7 100%);
+      background: linear-gradient(135deg, #0099bf 0%, #00BCEF 60%, #33d0ff 100%);
       padding: 160px 24px 100px;
       min-height: 100vh;
       display: flex; align-items: center;
@@ -384,7 +385,7 @@
     }
     .about-image-box {
       border-radius: 20px;
-      background: linear-gradient(135deg, #1a4fc4, #4f8ef7);
+      background: linear-gradient(135deg, #007aaa, #00BCEF);
       aspect-ratio: 4/3;
       display: flex; align-items: center; justify-content: center;
       padding: 40px;
@@ -458,7 +459,7 @@
 
     /* ── CTA Banner ───────────────────────────────────────────────── */
     .cta-banner {
-      background: linear-gradient(135deg, #1a4fc4 0%, #4f8ef7 100%);
+      background: linear-gradient(135deg, #007aaa 0%, #00BCEF 100%);
       padding: 80px 24px; text-align: center;
       position: relative; overflow: hidden;
     }
@@ -554,7 +555,7 @@
 
     /* ── Footer ───────────────────────────────────────────────────── */
     footer {
-      background: #0f2052; color: rgba(255,255,255,.65);
+      background: #111827; color: rgba(255,255,255,.65);
       padding: 60px 24px 32px;
     }
     .footer__inner {
