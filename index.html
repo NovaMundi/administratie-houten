@@ -91,6 +91,7 @@
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 0 24px;
+      background: var(--blue);
       transition: background .3s, box-shadow .3s;
     }
     .nav.scrolled {
@@ -145,7 +146,7 @@
     /* ── Hero ─────────────────────────────────────────────────────── */
     .hero {
       position: relative; overflow: hidden;
-      background: linear-gradient(135deg, #0099bf 0%, #00BCEF 60%, #33d0ff 100%);
+      background: #fff;
       padding: 160px 24px 100px;
       min-height: 100vh;
       display: flex; align-items: center;
@@ -178,67 +179,66 @@
     }
     .hero__title {
       font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 800; color: #fff; line-height: 1.15;
+      font-weight: 800; color: var(--navy); line-height: 1.15;
       letter-spacing: -.02em; margin-bottom: 24px;
     }
     .hero__title em { color: var(--orange); font-style: normal; }
     .hero__sub {
-      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      font-size: 1.1rem; color: var(--gray-600);
       max-width: 520px; margin-bottom: 40px; line-height: 1.7;
     }
     .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero__proof {
       display: flex; align-items: center; gap: 16px; margin-top: 48px;
-      padding-top: 36px; border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 36px; border-top: 1px solid var(--gray-200);
     }
     .hero__stars { display: flex; gap: 3px; }
     .hero__stars span { color: var(--orange); font-size: 1rem; }
-    .hero__proof-text { font-size: .85rem; color: rgba(255,255,255,.7); }
-    .hero__proof-text strong { color: #fff; }
+    .hero__proof-text { font-size: .85rem; color: var(--gray-600); }
+    .hero__proof-text strong { color: var(--navy); }
 
     /* Hero card */
     .hero__card {
-      background: rgba(255,255,255,.07);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,.15);
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-lg);
       border-radius: 20px;
       padding: 36px;
       position: relative;
     }
     .hero__card h3 {
-      font-size: 1.15rem; font-weight: 700; color: #fff;
+      font-size: 1.15rem; font-weight: 700; color: var(--navy);
       margin-bottom: 24px;
     }
     .hero__form-group { margin-bottom: 14px; }
     .hero__form-group label {
       display: block; font-size: .8rem; font-weight: 600;
-      color: rgba(255,255,255,.7); margin-bottom: 6px;
+      color: var(--gray-600); margin-bottom: 6px;
     }
     .hero__form-group input,
     .hero__form-group select,
     .hero__form-group textarea {
       width: 100%;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.2);
+      background: #fff;
+      border: 1.5px solid var(--gray-200);
       border-radius: 8px;
       padding: 10px 14px;
-      font-size: .9rem; color: #fff;
+      font-size: .9rem; color: var(--gray-800);
       font-family: inherit;
-      transition: border .2s, background .2s;
+      transition: border .2s, box-shadow .2s;
       outline: none;
     }
     .hero__form-group input::placeholder,
-    .hero__form-group textarea::placeholder { color: rgba(255,255,255,.4); }
+    .hero__form-group textarea::placeholder { color: var(--gray-400); }
     .hero__form-group input:focus,
     .hero__form-group select:focus,
     .hero__form-group textarea:focus {
-      border-color: var(--orange);
-      background: rgba(255,255,255,.15);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,188,239,.1);
     }
-    .hero__form-group select option { background: var(--navy); color: #fff; }
     .hero__card .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
     .hero__card-note {
-      font-size: .75rem; color: rgba(255,255,255,.5);
+      font-size: .75rem; color: var(--gray-400);
       text-align: center; margin-top: 10px;
     }
 
