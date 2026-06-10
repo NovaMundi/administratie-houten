@@ -2,3 +2,29 @@
   publish = "."
   command = "echo 'Static site, no build needed'"
   functions = "netlify/functions"
+
+# ── Canonicaliseer naar het kale domein (www → administratiehouten.nl) ──
+# Zorgt dat bezoekers altijd op één domeinvariant met geldig certificaat
+# uitkomen en voorkomt een certificaat-/naam-mismatch op www.
+[[redirects]]
+  from = "https://www.administratiehouten.nl/*"
+  to = "https://administratiehouten.nl/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.administratiehouten.nl/*"
+  to = "https://administratiehouten.nl/:splat"
+  status = 301
+  force = true
+
+# ── Security headers ───────────────────────────────────────────────────
+# HSTS dwingt browsers af om voortaan alleen via HTTPS te verbinden,
+# zodat een 'niet veilig'-melding bij http:// niet meer voorkomt.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
