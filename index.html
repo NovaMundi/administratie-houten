@@ -251,14 +251,14 @@
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 24px; text-align: center;
     }
+    .stat__prefix { font-size: .8rem; color: rgba(0,0,0,.5); margin-bottom: 2px; }
     .stat__number {
       font-size: 2rem; font-weight: 800; color: var(--navy);
       display: block; line-height: 1;
     }
     .stat__label { font-size: .85rem; color: rgba(0,0,0,.55); margin-top: 6px; }
-    .stats-bar__divider {
-      border: none; border-left: 1px solid rgba(0,0,0,.1);
-    }
+    .stat:not(:last-child) { border-right: 1px solid rgba(0,0,0,.1); }
+    @media (max-width: 700px) { .stat { border-right: none; } }
 
     /* ── USPs (differentiators) ───────────────────────────────────── */
     .usps-grid {
@@ -714,23 +714,24 @@
 <div class="stats-bar">
   <div class="stats-bar__inner">
     <div class="stat fade-in">
-      <span class="stat__number" data-target="16">0</span>
-      <p class="stat__label">Jaar ervaring (sinds 2008)</p>
+      <p class="stat__prefix">Meer dan</p>
+      <span class="stat__number" data-target="15">0</span>
+      <p class="stat__label">jaar ervaring (sinds 2008)</p>
     </div>
-    <div class="stats-bar__divider"></div>
     <div class="stat fade-in fade-in-delay-1">
+      <p class="stat__prefix">Meer dan</p>
       <span class="stat__number" data-target="100">0</span>
-      <p class="stat__label">Tevreden klanten +</p>
+      <p class="stat__label">tevreden klanten</p>
     </div>
-    <div class="stats-bar__divider"></div>
     <div class="stat fade-in fade-in-delay-2">
-      <span class="stat__number" data-target="100">0</span>
-      <p class="stat__label">% transparante tarieven</p>
+      <p class="stat__prefix">Meer dan</p>
+      <span class="stat__number" data-target="10000">0</span>
+      <p class="stat__label">fiscale aangiften ingediend</p>
     </div>
-    <div class="stats-bar__divider"></div>
     <div class="stat fade-in fade-in-delay-3">
+      <p class="stat__prefix">Meer dan</p>
       <span class="stat__number" data-target="5">0</span>
-      <p class="stat__label">Boekhoudpakketten ondersteund</p>
+      <p class="stat__label">boekhoudpakketten</p>
     </div>
   </div>
 </div>
@@ -738,7 +739,7 @@
 <!-- ── Software Bar ───────────────────────────────────────────────── -->
 <div class="software-bar">
   <div class="software-bar__inner">
-    <span class="software-bar__label">Wij werken met</span>
+    <span class="software-bar__label">Wij werken o.a. met:</span>
     <div class="software-bar__items">
       <span class="software-pill">Exact Globe</span>
       <span class="software-pill">Exact Online</span>
@@ -931,12 +932,12 @@
         <div class="testimonial-stars">
           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
-        <p class="testimonial-quote">"Administratie Houten heeft ons bedrijf geholpen met nauwkeurige en professionele financiële diensten. Ze denken actief mee en weten precies hoe ze de belasting kunnen optimaliseren. Een echte aanwinst."</p>
+        <p class="testimonial-quote">"Al jaren is Administratie Houten een betrouwbare en kundige partner voor al mijn administratie en aangiftes, zowel zakelijk als privé. Daan denkt proactief met je mee, is flexibel en altijd bereid om een stapje extra te zetten als dat nodig is."</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">EJ</div>
+          <div class="testimonial-avatar">TV</div>
           <div>
-            <p class="testimonial-name">Erik Jansen</p>
-            <p class="testimonial-role">Ondernemer, Houten</p>
+            <p class="testimonial-name">Tim van Pelt</p>
+            <p class="testimonial-role">DGA</p>
           </div>
         </div>
       </div>
@@ -1314,7 +1315,7 @@
     let current = 0;
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      el.textContent = Math.floor(current) + (target === 100 ? '' : '');
+      el.textContent = Math.floor(current).toLocaleString('nl-NL');
       if (current >= target) clearInterval(timer);
     }, 16);
   }
